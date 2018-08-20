@@ -1,9 +1,11 @@
 import React from "react";
 
-export default props => {
+const Dashboard = props => {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1>Welcome {props.location.state.newUser}</h1>
     </div>
   );
 };
+
+export default Dashboard;

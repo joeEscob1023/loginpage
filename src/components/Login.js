@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Dashboard from "./Dashboard";
 
 class Login extends Component {
   state = {
@@ -10,13 +11,26 @@ class Login extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.setState({ loggedIn: true });
-    if (this.state.loggedIn === true) {
-      this.props.history.push("/dashboard");
-    } else {
-      console.log("not logged in");
+    const { email, password, loggedIn } = this.state;
+    if (email === "" || password === "") {
+      return alert("Please enter the following fields");
     }
-    console.log(this.state);
+
+    this.setState({ loggedIn: true }, async () => {
+      const newUser = {
+        email,
+        password
+      };
+
+      //Need to find way to send state over
+      //when page is pushed to dashboard state is erased and there are no props to grab
+    });
+    this.props.history.push({
+      pathname: "./dashboard",
+      state: { newUser: this.state.email }
+    });
+    // loggedIn ? <Dashboard newUser={this.newUser} /> : null;
+    // console.log(this.state);
   };
 
   onChange = e => {
