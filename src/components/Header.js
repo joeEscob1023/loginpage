@@ -21,7 +21,11 @@ const Header = props => {
                 Dashboard
               </Link>
             </li>
-            <li className="nav-item">Login</li>
+            <li className="nav-item">
+              <Link to="/register" className="nav-link">
+                Register
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

@@ -3,6 +3,8 @@ import Dashboard from "./Dashboard";
 
 class Login extends Component {
   state = {
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     loggedIn: false,
@@ -11,15 +13,27 @@ class Login extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { email, password, loggedIn } = this.state;
-    if (email === "" || password === "") {
-      return alert("Please enter the following fields");
+    const { firstName, lastName, email, password } = this.state;
+    if (firstName === "") {
+      alert("Please Enter Your First Name");
+    }
+
+    if (lastName === "") {
+      alert("Please Enter Your Last Name");
+    }
+
+    if (email === "") {
+      alert("Please Enter Your Email");
+    }
+
+    if (password === "") {
+      alert("Please Enter Your Email");
     }
 
     this.setState({ loggedIn: true }, async () => {});
     this.props.history.push({
       pathname: "./dashboard",
-      state: { newUser: this.state.email }
+      state: { newUser: this.state.firstName }
     });
     // loggedIn ? <Dashboard newUser={this.newUser} /> : null;
     // console.log(this.state);
@@ -30,13 +44,35 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { firstName, lastName, email, password } = this.state;
     return (
       <div>
         <div className="card mb-3">
-          <div className="card-header">Log In</div>
+          <div className="card-header">Register</div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <label htmlFor="firstName">First Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  className="form-control form-control-lg"
+                  placeholder="Enter Your First Name"
+                  value={firstName}
+                  onChange={this.onChange}
+                />
+                <div className="form-group">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    className="form-control form-control-lg"
+                    placeholder="Enter Your Last Name"
+                    value={lastName}
+                    onChange={this.onChange}
+                  />
+                </div>
+              </div>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input
@@ -61,7 +97,7 @@ class Login extends Component {
               </div>
               <input
                 type="submit"
-                value="Log In"
+                value="Register"
                 className="btn btn-dark btn-block"
               />
             </form>
