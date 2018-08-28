@@ -6,9 +6,30 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import "./App.css";
 
+//Firebase
+import fire from "./config/Fire";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
+  state = {
+    user: {}
+  };
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: null });
+      }
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -16,8 +37,11 @@ class App extends Component {
           <Header branding="Login.com" />
           <div className="container">
             <Switch>
-              <Route exact path="/" component={Login} />
-              <Route exact path="/Dashboard" component={Dashboard} />
+              {this.state.user ? (
+                <Route exact path="/Dashboard" component={Dashboard} />
+              ) : (
+                <Route exact path="/" component={Login} />
+              )}
               <Route exact path="/Register" component={Register} />
             </Switch>
           </div>

@@ -1,11 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
+import fire from "../config/Fire";
 
-const Dashboard = props => {
-  return (
-    <div>
-      <h1>Welcome {props.location.state.newUser}</h1>
-    </div>
-  );
-};
+class Dashboard extends Component {
+  onLogout = e => {
+    e.preventDefault();
+    fire.auth().signOut();
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>You are at the dash board</h1>
+        <button onClick={this.onLogout}>Logout</button>
+      </div>
+    );
+  }
+}
 
 export default Dashboard;
+
+// props.location.state.newUser
