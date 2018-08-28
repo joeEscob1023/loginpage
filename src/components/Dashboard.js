@@ -5,6 +5,7 @@ class Dashboard extends Component {
   onLogout = e => {
     e.preventDefault();
     fire.auth().signOut();
+    this.props.history.push("/");
   };
 
   render() {
