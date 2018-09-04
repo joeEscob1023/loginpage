@@ -1,13 +1,7 @@
 import React, { Component } from "react";
-import fire from "../config/Fire";
+import { firebase } from "../firebase";
 
 class Dashboard extends Component {
-  onLogout = e => {
-    e.preventDefault();
-    fire.auth().signOut();
-    this.props.history.push("/");
-  };
-
   render() {
     return (
       <div>

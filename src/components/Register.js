@@ -14,13 +14,13 @@ class Login extends Component {
   onSubmit = e => {
     e.preventDefault();
     const { firstName, lastName, email, password } = this.state;
-    if (firstName === "") {
-      alert("Please Enter Your First Name");
-    }
+    // if (firstName === "") {
+    //   alert("Please Enter Your First Name");
+    // }
 
-    if (lastName === "") {
-      alert("Please Enter Your Last Name");
-    }
+    // if (lastName === "") {
+    //   alert("Please Enter Your Last Name");
+    // }
 
     if (email === "") {
       alert("Please Enter Your Email");
@@ -29,14 +29,6 @@ class Login extends Component {
     if (password === "") {
       alert("Please Enter Your Email");
     }
-
-    this.setState({ loggedIn: true }, async () => {});
-    this.props.history.push({
-      pathname: "./dashboard",
-      state: { newUser: this.state.firstName }
-    });
-    // loggedIn ? <Dashboard newUser={this.newUser} /> : null;
-    // console.log(this.state);
   };
 
   onChange = e => {
@@ -51,28 +43,6 @@ class Login extends Component {
           <div className="card-header">Register</div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label htmlFor="firstName">First Name</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  className="form-control form-control-lg"
-                  placeholder="Enter Your First Name"
-                  value={firstName}
-                  onChange={this.onChange}
-                />
-                <div className="form-group">
-                  <label htmlFor="lastName">Last Name</label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    className="form-control form-control-lg"
-                    placeholder="Enter Your Last Name"
-                    value={lastName}
-                    onChange={this.onChange}
-                  />
-                </div>
-              </div>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input
